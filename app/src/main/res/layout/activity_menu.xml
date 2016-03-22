@@ -4,4 +4,35 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg2">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="เลนเกมส์"
+        android:id="@+id/btnPlay"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button3"
+        android:layout_above="@+id/btnScore"
+        android:textSize="25dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:text="คะแนนของคุณ"
+        android:id="@+id/btnScore"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/button4"
+        android:textSize="25dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="ออกจากเกมส์"
+        android:id="@+id/btnExit"
+        android:background="@drawable/button5"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="25dp" />
 </RelativeLayout>
