@@ -2,37 +2,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg2">
+    android:background="@drawable/menu">
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:text="เลนเกมส์"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:id="@+id/btnPlay"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/button3"
-        android:layout_above="@+id/btnScore"
-        android:textSize="25dp" />
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginTop="154dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent" />
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:text="คะแนนของคุณ"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
         android:id="@+id/btnScore"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/button4"
-        android:textSize="25dp" />
+        android:layout_alignRight="@+id/btnPlay"
+        android:layout_alignEnd="@+id/btnPlay"
+        android:background="@android:color/transparent" />
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:text="ออกจากเกมส์"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:id="@+id/btnExit"
-        android:background="@drawable/button5"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="25dp" />
+        android:layout_below="@+id/btnScore"
+        android:layout_alignRight="@+id/btnScore"
+        android:layout_alignEnd="@+id/btnScore"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent" />
 </RelativeLayout>
