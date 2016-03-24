@@ -1,4 +1,4 @@
-package com.app.puzzlegame;
+package database;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

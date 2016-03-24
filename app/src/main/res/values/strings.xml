@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">เกมส์ทายภาพสุภาษิต</string>
+
+    <string name="question1">กบเลือกนาย</string>
+    <string name="question2">แกะดำ</string>
+    <string name="question3">ไก่แก่แม่ปลาช่อน</string>
+    <string name="question4">ไก่ได้พลอย</string>
+    <string name="question5">ขี้หมูขี้หมา</string>
+    <string name="question6">เขียนด้วยมือลบด้วยเท้า</string>
+    <string name="question7">ไข่ในหิน</string>
+    <string name="question8">ฆ่าวัวอย่าเสียดายพริก</string>
+    <string name="question9">จับปลาสองมือ</string>
+    <string name="question10">เฒ่าหัวงู</string>
+    <string name="question11">ปากหอยปากปู</string>
+    <string name="question12">ยกเมฆ</string>
+    <string name="question13">ลูกไก่ในกำมือ</string>
+    <string name="question14">วัวแก่กินหญ้าอ่อน</string>
+    <string name="question15">สอนจระเข้ว่ายน้ำ</string>
+    <string name="question16">สิบปากว่าไม่เท่าตาเห็น</string>
+    <string name="question17">สีซอให้ควายฟัง</string>
+    <string name="question18">หนอนหนังสือ</string>
+    <string name="question19">หนีเสือปะจระเข้</string>
+    <string name="question20">หนูตกถังข้าวสาร</string>
+    <string name="question21">หมามองเครื่องบิน</string>
+    <string name="question22">หมาหวงก้าง</string>
+    <string name="question23">เห็นช้างขี้ขี้ตามช้าง</string>
+    <string name="question24">เห็นช้างเท่าหมู</string>
+    <string name="question25">อ้อยเข้าปากช้าง</string>
 </resources>
