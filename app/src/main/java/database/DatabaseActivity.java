@@ -18,9 +18,8 @@ import java.util.HashMap;
 @SuppressLint("Instantiatable")
 public class DatabaseActivity extends SQLiteOpenHelper {
 	private static String DB_NAME = "puzzle_game_db.sqlite";
-	private static String TABLE_LOGIN = "tb_login";
-	private static String TB_GAME = "tb_game";
-	private static String TB_SCORE = "tb_score";
+	private static String TABLE_GAME = "tb_game";
+	private static String TABLE_SCORE = "tb_score";
 	private static Integer BUFFER_SIZE = 128;
 	private SQLiteDatabase myDataBase;
 	private final Context context;
@@ -88,7 +87,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
 
 	}
 
-	public void InsertLogin(String username, String password, String type) {
+	/*public void InsertLogin(String username, String password, String type) {
 		SQLiteDatabase db;
 		try {
 			db = this.getReadableDatabase(); // Read Data
@@ -136,7 +135,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
 				if (cursor.moveToFirst()) {
 					do {
 						map = new HashMap<String, String>();
-						/*map.put("id", cursor.getString(0));*/
+						*//*map.put("id", cursor.getString(0));*//*
 						map.put("username", cursor.getString(1));
 						map.put("password", cursor.getString(2));
 						map.put("type", cursor.getString(3));
@@ -152,7 +151,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
 			e.printStackTrace();
 			return null;
 		}
-	}
+	}*/
 
 	/*public boolean SignIn(String user, String pass) {
 		SQLiteDatabase db;

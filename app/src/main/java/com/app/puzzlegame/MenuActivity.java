@@ -22,7 +22,7 @@ public class MenuActivity extends Activity {
         btPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MenuActivity.this, Game1Activity.class);
+                Intent i = new Intent(MenuActivity.this, GameActivity.class);
                 startActivity(i);
             }
         });
