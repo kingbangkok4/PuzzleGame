@@ -29,7 +29,8 @@ public class MenuActivity extends Activity {
         btScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(MenuActivity.this, ScoreActivity.class);
+                startActivity(i);
             }
         });
         btExit.setOnClickListener(new View.OnClickListener() {
