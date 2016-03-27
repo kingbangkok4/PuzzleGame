@@ -93,7 +93,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
 			SQLiteDatabase db;
 			db = this.getReadableDatabase(); // Read Data
 			String strSQL = "SELECT id, question, answer1, answer2, answer3 FROM "
-					+ TABLE_GAME + " ORDER BY id WHERE played = false ";
+					+ TABLE_GAME + " WHERE played = 0 ORDER BY id ";
 			Cursor cursor = db.rawQuery(strSQL, null);
 			if (cursor != null) {
 				if (cursor.moveToFirst()) {
