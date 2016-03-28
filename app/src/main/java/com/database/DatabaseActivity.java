@@ -92,7 +92,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
 			HashMap<String, String> map;
 			SQLiteDatabase db;
 			db = this.getReadableDatabase(); // Read Data
-			String strSQL = "SELECT id, question, answer1, answer2, answer3 FROM "
+			String strSQL = "SELECT id, question, answer1, answer2, answer3, answer FROM "
 					+ TABLE_GAME + " WHERE played = 0 ORDER BY id ";
 			Cursor cursor = db.rawQuery(strSQL, null);
 			if (cursor != null) {
@@ -104,6 +104,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
 						map.put("answer1", cursor.getString(2));
 						map.put("answer2", cursor.getString(3));
 						map.put("answer3", cursor.getString(4));
+                        map.put("answer", cursor.getString(5));
 						MyArrList.add(map);
 					} while (cursor.moveToNext());
 				}
