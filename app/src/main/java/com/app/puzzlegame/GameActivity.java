@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.Toast;
+
+import com.database.DatabaseActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-
-import com.database.DatabaseActivity;
 
 /**
  * Created by Administrator on 3/27/2016.
@@ -99,8 +98,8 @@ public class GameActivity extends Activity{
 
     private void GamesAll() {
         gameList = myDb.GetGamesAll();
-        if(gameList != null){
-            i_random = randInt(0, gameList.size());
+        if(gameList.size() > 0){
+            i_random = randInt(0, gameList.size()-1);
 
             int resQuestionId = getResources().getIdentifier(gameList.get(i_random).get("question"), "drawable", getPackageName());
             iQuestion.setBackgroundResource(resQuestionId);
