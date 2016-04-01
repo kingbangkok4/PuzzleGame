@@ -127,7 +127,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         db = this.getWritableDatabase(); // Write Data
         try {
             String strSQL = " UPDATE "+TABLE_GAME+" SET played = 1 WHERE id = "+id+" ";
-            db.rawQuery(strSQL, null);
+            db.execSQL(strSQL);
             status = true;
         }catch(Exception e){
             e.printStackTrace();
@@ -142,7 +142,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         db = this.getWritableDatabase(); // Write Data
         try {
             String strSQL = " UPDATE "+TABLE_SCORE+" SET score_total = score_total + score_set ";
-            db.rawQuery(strSQL, null);
+            db.execSQL(strSQL);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -182,7 +182,10 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         db = this.getWritableDatabase(); // Write Data
         try {
             String strSQL = " UPDATE "+TABLE_SCORE+" SET score_total = 0 ";
-            db.rawQuery(strSQL, null);
+            db.execSQL(strSQL);
+
+            String strSQLGame = " UPDATE "+TABLE_GAME+" SET played = 0 ";
+            db.execSQL(strSQLGame);
         }catch(Exception e){
             e.printStackTrace();
         }
