@@ -2,6 +2,7 @@ package com.app.puzzlegame;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,10 +23,16 @@ public class GameActivity extends Activity{
     private ArrayList<HashMap<String, String>> gameList;
     private int i_random = 0;
 
+    MediaPlayer mMedia;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        if(mMedia != null){
+            mMedia.release();
+        }
 
         iQuestion = (Button)findViewById(R.id.imgQuestion);
         btAnswer1 = (Button)findViewById(R.id.btnAnswer1);
@@ -69,7 +76,7 @@ public class GameActivity extends Activity{
             case "1":
                 if(gameList.get(i_random).get("answer1").equals(gameList.get(i_random).get("answer"))){
                     msgShow("ถูก");
-                    GamesAll();
+                    GameUpdate();
                 }else{
                     msgShow("ผิด");
                 }
@@ -77,7 +84,7 @@ public class GameActivity extends Activity{
             case "2":
                 if(gameList.get(i_random).get("answer2").equals(gameList.get(i_random).get("answer"))){
                     msgShow("ถูก");
-                    GamesAll();
+                    GameUpdate();
                 }else{
                     msgShow("ผิด");
                 }
@@ -85,7 +92,7 @@ public class GameActivity extends Activity{
             case "3":
                 if(gameList.get(i_random).get("answer3").equals(gameList.get(i_random).get("answer"))){
                     msgShow("ถูก");
-                    GamesAll();
+                    GameUpdate();
                 }else{
                     msgShow("ผิด");
                 }
@@ -94,6 +101,14 @@ public class GameActivity extends Activity{
                 break;
         }
 
+    }
+
+    private void GameUpdate() {
+        boolean status = myDb.UpdatePlayed(gameList.get(i_random).get("id"));
+        if(status){
+            myDb.UpdateScore();
+            GamesAll();
+        }
     }
 
     private void GamesAll() {
@@ -110,6 +125,9 @@ public class GameActivity extends Activity{
             btAnswer2.setBackgroundResource(resanswer2Id);
             int resanswer3Id = getResources().getIdentifier(gameList.get(i_random).get("answer3"), "drawable", getPackageName());
             btAnswer3.setBackgroundResource(resanswer3Id);
+        }else {
+            Intent i = new Intent(GameActivity.this, ScoreActivity.class);
+            startActivity(i);
         }
     }
 
@@ -121,5 +139,21 @@ public class GameActivity extends Activity{
 
     private void msgShow(String strMsg){
         Toast.makeText(getApplicationContext(), strMsg, Toast.LENGTH_SHORT).show();
+        if("ถูก".equals(strMsg)){
+            stopPlaying();
+            mMedia = MediaPlayer.create(GameActivity.this, R.raw.t);
+            mMedia.start();
+        }else {
+            mMedia = MediaPlayer.create(GameActivity.this, R.raw.f);
+            mMedia.start();
+        }
+    }
+
+    private void stopPlaying(){
+        if (mMedia != null) {
+            mMedia.stop();
+            mMedia.release();
+            mMedia = null;
+        }
     }
 }

@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.database.DatabaseActivity;
+
 /**
  * Created by nuttapong_i on 22/03/2559.
  */
 public class MenuActivity extends Activity {
+    private DatabaseActivity myDb = new DatabaseActivity(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +26,13 @@ public class MenuActivity extends Activity {
         btPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MenuActivity.this, GameActivity.class);
-                startActivity(i);
+                if(myDb.CheckFinishedGame()){
+                    Intent i = new Intent(MenuActivity.this, ScoreActivity.class);
+                    startActivity(i);
+                }else {
+                    Intent i = new Intent(MenuActivity.this, GameActivity.class);
+                    startActivity(i);
+                }
             }
         });
         btScore.setOnClickListener(new View.OnClickListener() {
