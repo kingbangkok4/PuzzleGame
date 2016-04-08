@@ -45,4 +45,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/btn_exit" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="30dp"
+        android:text="Time"
+        android:id="@+id/txtTime"
+        android:layout_centerHorizontal="true"
+        android:background="#de5cf5" />
 </RelativeLayout>

@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.database.DatabaseActivity;
@@ -13,6 +16,8 @@ import com.database.DatabaseActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Administrator on 3/27/2016.
@@ -25,10 +30,21 @@ public class GameActivity extends Activity{
 
     MediaPlayer mMedia;
 
+    Handler handler = new Handler();
+    Timer timer = new Timer();
+    TimerTask timetask;
+    TextView timeCount;
+
+    private final long startTime = 30000;  // 1000 = 1 second
+    private final long interval = 1000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        final MyCountDown countdown = new MyCountDown(startTime,interval);
+        timeCount = (TextView) findViewById(R.id.txtTime);
 
         if(mMedia != null){
             mMedia.release();
@@ -41,6 +57,7 @@ public class GameActivity extends Activity{
         btExit = (Button)findViewById(R.id.btnExit);
 
         GamesAll();
+        countdown.start();
 
         btAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,5 +172,28 @@ public class GameActivity extends Activity{
             mMedia.release();
             mMedia = null;
         }
+    }
+
+    public class MyCountDown extends CountDownTimer {
+        public MyCountDown(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+            // TODO Auto-generated constructor stub
+        }
+
+        @Override
+        public void onFinish() {
+            // TODO Auto-generated method stub
+            timeCount.setText("Time out!");
+            Intent i = new Intent(GameActivity.this, ScoreActivity.class);
+            startActivity(i);
+        }
+
+        @Override
+        public void onTick(long remain) {
+            // TODO Auto-generated method stub
+            int timeRemain = (int) (remain) / 1000;
+            timeCount.setText(" Time : " + timeRemain);
+        }
+
     }
 }
