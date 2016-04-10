@@ -131,12 +131,15 @@ public class GameActivity extends Activity{
     }
 
     private void GoToScore() {
+        countdown.cancel();
+        countdown.onFinish();
         Intent i = new Intent(GameActivity.this, ScoreActivity.class);
         startActivity(i);
     }
 
     private void GameUpdate() {
         countdown.cancel();
+        countdown.onFinish();
         boolean status = myDb.UpdatePlayed(gameList.get(i_random).get("id"));
         if(status){
             myDb.UpdateScore();
@@ -148,6 +151,7 @@ public class GameActivity extends Activity{
         gameList = myDb.GetGamesAll();
         if(gameList.size() > 0){
             i_random = randInt(0, gameList.size()-1);
+           // i_random = 36;
 
             int resQuestionId = getResources().getIdentifier(gameList.get(i_random).get("question"), "drawable", getPackageName());
             iQuestion.setBackgroundResource(resQuestionId);
@@ -205,7 +209,7 @@ public class GameActivity extends Activity{
         @Override
         public void onFinish() {
             // TODO Auto-generated method stub
-            timeCount.setText("Time out!");
+            timeCount.setText("หมดเวลา !");
             Intent i = new Intent(GameActivity.this, ScoreActivity.class);
             startActivity(i);
         }
@@ -214,7 +218,7 @@ public class GameActivity extends Activity{
         public void onTick(long remain) {
             // TODO Auto-generated method stub
             int timeRemain = (int) (remain) / 1000;
-            timeCount.setText(" Time : " + timeRemain);
+            timeCount.setText(" เวลาที่เหลือ : " + timeRemain);
         }
 
     }
