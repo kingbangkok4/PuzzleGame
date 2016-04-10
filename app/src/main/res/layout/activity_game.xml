@@ -8,43 +8,40 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.app.puzzlegame.MainActivity"
-    android:background="@drawable/game1">
+    android:background="@drawable/question_bg">
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/imgQuestion"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_below="@+id/txtTime"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer1"
         android:layout_below="@+id/imgQuestion"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/btnAnswer2"
+        android:layout_marginTop="80dp" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer2"
         android:layout_below="@+id/btnAnswer1"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/btnAnswer3"
+        android:layout_marginTop="10dp"
+        android:layout_alignEnd="@+id/btnAnswer3" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer3"
         android:layout_below="@+id/btnAnswer2"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnExit"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/btn_exit" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -54,4 +51,14 @@
         android:id="@+id/txtTime"
         android:layout_centerHorizontal="true"
         android:background="#de5cf5" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:id="@+id/btnExit"
+        android:layout_alignTop="@+id/btnAnswer3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/main" />
 </RelativeLayout>

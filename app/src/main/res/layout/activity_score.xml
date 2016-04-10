@@ -21,12 +21,22 @@
         android:textSize="100dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="เริ่มเล่นใหม่"
-        android:id="@+id/btnReset"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:id="@+id/btnExit"
+        android:background="@drawable/main"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="#f36060"
-        android:textStyle="bold|italic" />
+        android:layout_gravity="center" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="รีเซ็ตคะแนน"
+        android:id="@+id/btnReset"
+        android:background="@drawable/eraser"
+        android:layout_marginBottom="45dp"
+        android:layout_above="@+id/btnExit"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

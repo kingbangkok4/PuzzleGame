@@ -6,6 +6,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.IBinder;
+import android.sax.StartElementListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,13 +39,13 @@ public class GameActivity extends Activity{
 
     private final long startTime = 30000;  // 1000 = 1 second
     private final long interval = 1000;
+    private final MyCountDown countdown = new MyCountDown(startTime,interval);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        final MyCountDown countdown = new MyCountDown(startTime,interval);
         timeCount = (TextView) findViewById(R.id.txtTime);
 
         if(mMedia != null){
@@ -80,10 +82,12 @@ public class GameActivity extends Activity{
         btExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
+              /*  Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                startActivity(intent);*/
+                Intent i = new Intent(GameActivity.this, MenuActivity.class);
+                startActivity(i);
             }
         });
     }
@@ -94,24 +98,30 @@ public class GameActivity extends Activity{
                 if(gameList.get(i_random).get("answer1").equals(gameList.get(i_random).get("answer"))){
                     msgShow("ถูก");
                     GameUpdate();
+                    ShowDeatail();
                 }else{
                     msgShow("ผิด");
+                    GoToScore();
                 }
                 break;
             case "2":
                 if(gameList.get(i_random).get("answer2").equals(gameList.get(i_random).get("answer"))){
                     msgShow("ถูก");
                     GameUpdate();
+                    ShowDeatail();
                 }else{
                     msgShow("ผิด");
+                    GoToScore();
                 }
                 break;
             case "3":
                 if(gameList.get(i_random).get("answer3").equals(gameList.get(i_random).get("answer"))){
                     msgShow("ถูก");
                     GameUpdate();
+                    ShowDeatail();
                 }else{
                     msgShow("ผิด");
+                    GoToScore();
                 }
                 break;
             default:
@@ -120,11 +130,17 @@ public class GameActivity extends Activity{
 
     }
 
+    private void GoToScore() {
+        Intent i = new Intent(GameActivity.this, ScoreActivity.class);
+        startActivity(i);
+    }
+
     private void GameUpdate() {
+        countdown.cancel();
         boolean status = myDb.UpdatePlayed(gameList.get(i_random).get("id"));
         if(status){
             myDb.UpdateScore();
-            GamesAll();
+            //GamesAll();
         }
     }
 
@@ -164,6 +180,12 @@ public class GameActivity extends Activity{
             mMedia = MediaPlayer.create(GameActivity.this, R.raw.f);
             mMedia.start();
         }
+    }
+
+    private void ShowDeatail(){
+        Intent i = new Intent(GameActivity.this, DetailActivity.class);
+        i.putExtra("answer_detail", gameList.get(i_random).get("answer_detail"));
+        startActivity(i);
     }
 
     private void stopPlaying(){
