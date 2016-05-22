@@ -28,10 +28,10 @@ public class ScoreActivity extends Activity{
         btReset = (Button)findViewById(R.id.btnReset);
         btExit = (Button)findViewById(R.id.btnExit);
 
-        btReset.setVisibility(View.INVISIBLE);
+        /*btReset.setVisibility(View.INVISIBLE);
         if(myDb.CheckFinishedGame()){
             btReset.setVisibility(View.VISIBLE);
-        }
+        }*/
 
         ShowScore();
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
@@ -72,7 +72,7 @@ public class ScoreActivity extends Activity{
 
     private void ResetScore() {
         myDb.ResetScore();
-        btReset.setVisibility(View.INVISIBLE);
+        //btReset.setVisibility(View.INVISIBLE);
         ShowScore();
     }
 }
