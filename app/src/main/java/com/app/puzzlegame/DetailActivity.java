@@ -2,17 +2,21 @@ package com.app.puzzlegame;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 /**
  * Created by Administrator on 4/10/2016.
  */
 public class DetailActivity extends Activity {
     String answer_detail = "";
-    Button iDetail, btnNext;
+    Button  btnNext;
+    RelativeLayout iDetail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +27,11 @@ public class DetailActivity extends Activity {
             answer_detail = extras.getString("answer_detail");
         }
 
-        iDetail = (Button)findViewById(R.id.btnDetail);
+        iDetail = (RelativeLayout)findViewById(R.id.btnDetail);
         btnNext = (Button)findViewById(R.id.btnNext);
+
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
 
         int resDetailId = getResources().getIdentifier(answer_detail, "drawable", getPackageName());
         iDetail.setBackgroundResource(resDetailId);
