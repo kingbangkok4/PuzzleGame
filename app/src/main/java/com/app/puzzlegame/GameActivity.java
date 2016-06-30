@@ -10,8 +10,10 @@ import android.os.IBinder;
 import android.sax.StartElementListener;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.database.DatabaseActivity;
 
@@ -29,9 +31,11 @@ public class GameActivity extends Activity{
     private Button iQuestion, btAnswer1, btAnswer2, btAnswer3, btExit;
     private ArrayList<HashMap<String, String>> gameList;
     private int i_random = 0;
+    private String level = "";
 
     MediaPlayer mMedia;
-
+    ToggleButton tbBGM;
+    MediaPlayer mpBgm;
     Handler handler = new Handler();
     Timer timer = new Timer();
     TimerTask timetask;
@@ -46,8 +50,24 @@ public class GameActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        timeCount = (TextView) findViewById(R.id.txtTime);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            level = extras.getString("level");
+        }
 
+        mpBgm = MediaPlayer.create(GameActivity.this, R.raw.bb);
+        mpBgm.setLooping(true);
+        mpBgm.start();
+        timeCount = (TextView) findViewById(R.id.txtTime);
+        tbBGM = (ToggleButton)findViewById(R.id.tbBGM);
+        tbBGM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+                if(arg1)
+                    mpBgm.start();
+                else
+                    mpBgm.pause();
+            }
+        });
         if(mMedia != null){
             mMedia.release();
         }
@@ -86,7 +106,7 @@ public class GameActivity extends Activity{
                 intent.addCategory(Intent.CATEGORY_HOME);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);*/
-                Intent i = new Intent(GameActivity.this, MenuActivity.class);
+                Intent i = new Intent(getBaseContext(), MenuActivity.class);
                 startActivity(i);
             }
         });
@@ -101,7 +121,8 @@ public class GameActivity extends Activity{
                     ShowDeatail();
                 }else{
                     msgShow("ผิด");
-                    GoToScore();
+                    //GoToScore();
+                    GamesAll();
                 }
                 break;
             case "2":
@@ -111,7 +132,8 @@ public class GameActivity extends Activity{
                     ShowDeatail();
                 }else{
                     msgShow("ผิด");
-                    GoToScore();
+                    //GoToScore();
+                    GamesAll();
                 }
                 break;
             case "3":
@@ -121,7 +143,8 @@ public class GameActivity extends Activity{
                     ShowDeatail();
                 }else{
                     msgShow("ผิด");
-                    GoToScore();
+                    //GoToScore();
+                    GamesAll();
                 }
                 break;
             default:
@@ -142,13 +165,13 @@ public class GameActivity extends Activity{
         //countdown.onFinish();
         boolean status = myDb.UpdatePlayed(gameList.get(i_random).get("id"));
         if(status){
-            myDb.UpdateScore();
+            myDb.UpdateScore(level);
             //GamesAll();
         }
     }
 
     private void GamesAll() {
-        gameList = myDb.GetGamesAll();
+        gameList = myDb.GetGamesAll(level);
         if(gameList.size() > 0){
             i_random = randInt(0, gameList.size()-1);
             //i_random = 36;
@@ -220,6 +243,25 @@ public class GameActivity extends Activity{
             int timeRemain = (int) (remain) / 1000;
             timeCount.setText(" เวลาที่เหลือ : " + timeRemain);
         }
-
     }
-}
+        public void onResume() {
+            super.onResume();
+            if(tbBGM.isChecked())
+                mpBgm.start();
+        }
+
+        public void onPause() {
+            super.onPause();
+            mpBgm.pause();
+        }
+
+        public void onDestroy() {
+            super.onDestroy();
+            mpBgm.stop();
+            mpBgm.release();
+            mpBgm = null;
+        }
+    }
+
+
+

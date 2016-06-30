@@ -15,10 +15,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="0"
-        android:id="@+id/textViewScore"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="100dp" />
+        android:id="@+id/textViewScore1"
+        android:textSize="50dp"
+        android:layout_marginTop="143dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textViewScore3" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -31,12 +32,62 @@
         android:layout_gravity="center" />
 
     <Button
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="รีเซ็ตคะแนน"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:id="@+id/btnReset"
         android:background="@drawable/eraser"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="40dp"
         android:layout_above="@+id/btnExit"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/textViewScore2"
+        android:textSize="50dp"
+        android:layout_below="@+id/textViewScore1"
+        android:layout_alignStart="@+id/textViewScore1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/textViewScore3"
+        android:textSize="50dp"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_toEndOf="@+id/btnExit"
+        android:layout_marginStart="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="บทที่ 1 "
+        android:id="@+id/textView3"
+        android:textSize="50dp"
+        android:layout_above="@+id/textViewScore2"
+        android:layout_toStartOf="@+id/btnReset" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="บทที่ 2 "
+        android:id="@+id/textView4"
+        android:textSize="50dp"
+        android:layout_alignTop="@+id/textViewScore2"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="บทที่ 3 "
+        android:id="@+id/textView5"
+        android:textSize="50dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
 </RelativeLayout>

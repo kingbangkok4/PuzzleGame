@@ -87,14 +87,14 @@ public class DatabaseActivity extends SQLiteOpenHelper {
 
     }
 
-	public ArrayList<HashMap<String, String>> GetGamesAll() {
+	public ArrayList<HashMap<String, String>> GetGamesAll(String level) {
 		try {
 			ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
 			HashMap<String, String> map;
 			SQLiteDatabase db;
 			db = this.getReadableDatabase(); // Read Data
 			String strSQL = "SELECT "+TABLE_GAME+".id, "+TABLE_GAME+".question, "+TABLE_GAME+".answer1, "+TABLE_GAME+".answer2, "+TABLE_GAME+".answer3, "+TABLE_GAME+".answer, "+TABLE_ANSWER_DETAIL+".answer_detail  FROM "
-					+ TABLE_GAME + " LEFT OUTER JOIN "+TABLE_ANSWER_DETAIL+" ON "+TABLE_GAME+".id = "+TABLE_ANSWER_DETAIL+".game_id  WHERE "+TABLE_GAME+".played = 0 ORDER BY "+TABLE_GAME+".id ";
+					+ TABLE_GAME + " LEFT OUTER JOIN "+TABLE_ANSWER_DETAIL+" ON "+TABLE_GAME+".id = "+TABLE_ANSWER_DETAIL+".game_id  WHERE "+TABLE_GAME+".played = 0 AND "+TABLE_GAME+".level = "+level+" ORDER BY "+TABLE_GAME+".id ";
 			Cursor cursor = db.rawQuery(strSQL, null);
 			if (cursor != null) {
 				if (cursor.moveToFirst()) {
@@ -137,11 +137,11 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         return status;
     }
 
-    public void UpdateScore(){
+    public void UpdateScore(String level){
         SQLiteDatabase db;
         db = this.getWritableDatabase(); // Write Data
         try {
-            String strSQL = " UPDATE "+TABLE_SCORE+" SET score_total = score_total + score_set ";
+            String strSQL = " UPDATE "+TABLE_SCORE+" SET score_total = score_total + score_set WHERE level = "+level+" ";
             db.execSQL(strSQL);
         }catch(Exception e){
             e.printStackTrace();
@@ -149,14 +149,13 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String ShowScore(){
-        String score = "0";
+    public ArrayList<HashMap<String, String>> ShowScore(){
+        ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
         try {
-            ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             SQLiteDatabase db;
             db = this.getReadableDatabase(); // Read Data
-            String strSQL = "SELECT score_total FROM "+TABLE_SCORE+" LIMIT 1 ";
+            String strSQL = "SELECT score_total FROM "+TABLE_SCORE+" ORDER BY level ";
             Cursor cursor = db.rawQuery(strSQL, null);
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
@@ -169,12 +168,11 @@ public class DatabaseActivity extends SQLiteOpenHelper {
             }
             cursor.close();
             db.close();
-            score = MyArrList.get(0).get("score_total");
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        return score;
+        return MyArrList;
     }
 
     public void ResetScore(){

@@ -11,20 +11,26 @@ import android.widget.TextView;
 
 import com.database.DatabaseActivity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by Administrator on 3/27/2016.
  */
 public class ScoreActivity extends Activity{
-    private TextView txtScore;
+    private TextView txtScore1, txtScore2, txtScore3;
     private Button btReset, btExit;
     private DatabaseActivity myDb = new DatabaseActivity(this);
+    private ArrayList<HashMap<String, String>> scoreList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        txtScore = (TextView)findViewById(R.id.textViewScore);
+        txtScore1 = (TextView)findViewById(R.id.textViewScore1);
+        txtScore2 = (TextView)findViewById(R.id.textViewScore2);
+        txtScore3 = (TextView)findViewById(R.id.textViewScore3);
         btReset = (Button)findViewById(R.id.btnReset);
         btExit = (Button)findViewById(R.id.btnExit);
 
@@ -33,9 +39,9 @@ public class ScoreActivity extends Activity{
             btReset.setVisibility(View.VISIBLE);
         }*/
 
-        ShowScore();
+        ShowScore(); //  ใช่ในการโชว์คะแนนขึ้นมา
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
-        btReset.setOnClickListener(new View.OnClickListener() {
+        btReset.setOnClickListener(new View.OnClickListener() {  //เมธอด  ปุ่ม  reset  คะแนน
             @Override
             public void onClick(View v) {
                 ad.setTitle("ยืนยันการรีเซ็ตคะแนน");
@@ -53,7 +59,7 @@ public class ScoreActivity extends Activity{
                                 }).show();
             }
         });
-        btExit.setOnClickListener(new View.OnClickListener() {
+        btExit.setOnClickListener(new View.OnClickListener() {   //ปุ่มกดที่ใช่กลับไปหน้าแรก
             @Override
             public void onClick(View v) {
               /*  Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -67,7 +73,10 @@ public class ScoreActivity extends Activity{
     }
 
     private void ShowScore() {
-        txtScore.setText(myDb.ShowScore());
+        scoreList = myDb.ShowScore();
+        txtScore1.setText(scoreList.get(0).get("score_total").toString());
+        txtScore2.setText(scoreList.get(1).get("score_total").toString());
+        txtScore3.setText(scoreList.get(2).get("score_total").toString());
     }
 
     private void ResetScore() {

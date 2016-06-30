@@ -18,30 +18,26 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="290dp"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer1"
-        android:layout_below="@+id/imgQuestion"
-        android:layout_alignStart="@+id/btnAnswer2"
-        android:layout_marginTop="80dp" />
+        android:layout_below="@+id/imageView"
+        android:layout_alignEnd="@+id/imgQuestion" />
 
     <Button
-        android:layout_width="280dp"
+        android:layout_width="290dp"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer2"
         android:layout_below="@+id/btnAnswer1"
-        android:layout_alignStart="@+id/btnAnswer3"
-        android:layout_marginTop="10dp"
-        android:layout_alignEnd="@+id/btnAnswer3" />
+        android:layout_alignStart="@+id/btnAnswer1" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="290dp"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer3"
+        android:layout_marginLeft="30dp"
         android:layout_below="@+id/btnAnswer2"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp" />
+        android:layout_alignEnd="@+id/btnAnswer2" />
 
     <TextView
         android:layout_width="match_parent"
@@ -57,8 +53,28 @@
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:id="@+id/btnExit"
-        android:layout_alignTop="@+id/btnAnswer3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/main" />
+        android:background="@drawable/main"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:background="@drawable/nn"
+        android:id="@+id/imageView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    <ToggleButton
+        android:id="@+id/tbBGM"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/ttt"
+        android:textOn=""
+        android:textOff=""
+        android:checked="true"
+        android:layout_alignBottom="@+id/btnExit"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/btnAnswer3"
+        android:layout_alignTop="@+id/btnExit" />
+
 </RelativeLayout>
