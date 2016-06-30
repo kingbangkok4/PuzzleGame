@@ -212,6 +212,7 @@ public class GameActivity extends Activity{
     private void ShowDeatail(){
         Intent i = new Intent(GameActivity.this, DetailActivity.class);
         i.putExtra("answer_detail", gameList.get(i_random).get("answer_detail"));
+        i.putExtra("level", level);
         startActivity(i);
     }
 

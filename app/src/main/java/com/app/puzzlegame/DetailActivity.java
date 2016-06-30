@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
  * Created by Administrator on 4/10/2016.
  */
 public class DetailActivity extends Activity {
-    String answer_detail = "";
+    String answer_detail = "", level = "";
     Button  btnNext;
     RelativeLayout iDetail;
     @Override
@@ -25,6 +25,7 @@ public class DetailActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             answer_detail = extras.getString("answer_detail");
+            level = extras.getString("level");
         }
 
         iDetail = (RelativeLayout)findViewById(R.id.btnDetail);
@@ -39,7 +40,8 @@ public class DetailActivity extends Activity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DetailActivity.this, GameActivity.class);
+                Intent i = new Intent(getBaseContext(), GameActivity.class);
+                i.putExtra("level", level);
                 startActivity(i);
             }
         });

@@ -21,8 +21,9 @@
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer1"
+        android:layout_gravity="center"
         android:layout_below="@+id/imageView"
-        android:layout_alignEnd="@+id/imgQuestion" />
+        android:layout_alignStart="@+id/imageView" />
 
     <Button
         android:layout_width="290dp"
@@ -35,9 +36,8 @@
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer3"
-        android:layout_marginLeft="30dp"
         android:layout_below="@+id/btnAnswer2"
-        android:layout_alignEnd="@+id/btnAnswer2" />
+        android:layout_alignStart="@+id/btnAnswer2" />
 
     <TextView
         android:layout_width="match_parent"
