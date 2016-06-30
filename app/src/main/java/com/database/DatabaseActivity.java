@@ -209,5 +209,23 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         return  status;
     }
 
+    public boolean CheckFinishedLevel(String level){
+        boolean status = false;
+        try {
+            String selectQuery = " SELECT * FROM "+TABLE_GAME+" WHERE played = 0 AND level = "+level+" ";
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            cursor.moveToFirst();
+            int total = cursor.getCount();
+            if(total == 0){
+                status = true;
+            }
+            cursor.close();
+            db.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  status;
+    }
 
 }

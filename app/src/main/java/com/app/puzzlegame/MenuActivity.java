@@ -32,7 +32,7 @@ public class MenuActivity extends Activity {
                     Intent i = new Intent(MenuActivity.this, ScoreActivity.class);
                     startActivity(i);
                 }else {
-                    Intent i = new Intent(MenuActivity.this, GameActivity.class);
+                    Intent i = new Intent(MenuActivity.this, LevelActivity.class);
                     startActivity(i);
                 }
             }
