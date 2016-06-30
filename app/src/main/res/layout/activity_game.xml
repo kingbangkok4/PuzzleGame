@@ -23,21 +23,24 @@
         android:id="@+id/btnAnswer1"
         android:layout_gravity="center"
         android:layout_below="@+id/imageView"
-        android:layout_alignStart="@+id/imageView" />
+        android:layout_alignStart="@+id/imageView"
+        android:layout_marginTop="-20dp" />
 
     <Button
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer2"
         android:layout_below="@+id/btnAnswer1"
-        android:layout_alignStart="@+id/btnAnswer1" />
+        android:layout_alignStart="@+id/btnAnswer1"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:id="@+id/btnAnswer3"
         android:layout_below="@+id/btnAnswer2"
-        android:layout_alignStart="@+id/btnAnswer2" />
+        android:layout_alignStart="@+id/btnAnswer2"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -55,7 +58,8 @@
         android:id="@+id/btnExit"
         android:background="@drawable/main"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
 
     <ImageView
         android:layout_width="300dp"
